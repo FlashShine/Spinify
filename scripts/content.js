@@ -87,10 +87,10 @@
         this.fillFields();
         this.unlockFields();
         this.startAutoRetry();
-        this.showToast('âœ“ Started: ðŸ˜‰');
+        this.showToast('✓ Started: 😉');
       } else {
         this.stopAutoRetry();
-        this.showToast('âœ“ Stopped: Auto-retry disabled');
+        this.showToast('✓ Stopped: Auto-retry disabled');
       }
 
       this.updateStartStopButton();
@@ -98,7 +98,7 @@
 
     updateStartStopButton() {
       if (this.startStopButton) {
-        this.startStopButton.innerHTML = `${this.isRunning ? 'â¹ï¸' : 'â–¶ï¸'} ${this.isRunning ? 'Stop' : 'Start'}`;
+        this.startStopButton.innerHTML = `${this.isRunning ? '⏹️' : '▶️'} ${this.isRunning ? 'Stop' : 'Start'}`;
       }
     }
 
@@ -129,7 +129,7 @@
       Object.entries(config.fields).forEach(([key, selector]) => {
         const field = document.querySelector(selector);
         if (field) {
-          field.value = address[key] || 'ï¼¶ï¼£ï½Œï½•ï½‚';
+          field.value = address[key] || 'ＶＣｌｕｂ';
           // Use the same random name for name fields, address values for others
           field.value = key === 'billingName' ? randomName : (address[key] || '');
           field.dispatchEvent(new Event('input', { bubbles: true }));
@@ -305,14 +305,14 @@
     createBranding() {
       const branding = document.createElement('div');
       Object.assign(branding.style, this.createStyles().branding);
-      branding.textContent = 'ð–µð–¢ð—…ð—Žð–» - ð–³ð–¾ð–¼ð— ð– ð—Žð—ð—ˆ ð–¢ð—ˆ ð–§ð—‚ð—ð—ð–¾ð—‹â„¢';
+      branding.textContent = 'Spinify';
       document.body.appendChild(branding);
     }
 
     toggleVisibility() {
       this.isVisible = !this.isVisible;
       this.container.style.right = this.isVisible ? '0' : '-140px';
-      this.toggleBtn.textContent = this.isVisible ? 'Â»' : 'Â«';
+      this.toggleBtn.textContent = this.isVisible ? '»' : '«';
     }
 
     createInterface() {
@@ -323,12 +323,12 @@
 
       this.toggleBtn = document.createElement('button');
       Object.assign(this.toggleBtn.style, styles.toggleBtn);
-      this.toggleBtn.textContent = 'Â«';
+      this.toggleBtn.textContent = '«';
       this.toggleBtn.onclick = () => this.toggleVisibility();
 
-      const binButton = this.createButton('Enter BIN', () => this.showBinDialog(), 'ðŸ’³');
-      const emailButton = this.createButton('Set Email', () => this.showEmailDialog(), 'ðŸ“§');
-      this.startStopButton = this.createButton(this.isRunning ? 'Stop' : 'Start', () => this.toggleStartStop(), this.isRunning ? 'â¹ï¸' : 'â–¶ï¸');
+      const binButton = this.createButton('Enter BIN', () => this.showBinDialog(), '💳');
+      const emailButton = this.createButton('Set Email', () => this.showEmailDialog(), '📧');
+      this.startStopButton = this.createButton(this.isRunning ? 'Stop' : 'Start', () => this.toggleStartStop(), this.isRunning ? '⏹️' : '▶️');
 
       const buttons = [binButton, emailButton, this.startStopButton];
 
@@ -398,11 +398,11 @@
         if (binValue) {
           chrome.storage.local.set({ bin: binValue }, () => {
             this.binInput = binValue;
-            this.showToast('âœ“ BIN saved successfully');
+            this.showToast('✓ BIN saved successfully');
             dialog.remove();
           });
         } else {
-          this.showToast('âš ï¸ Please enter a valid BIN');
+          this.showToast('⚠️ Please enter a valid BIN');
         }
       };
 
@@ -471,11 +471,11 @@
         if (emailValue) {
           chrome.storage.local.set({ email: emailValue }, () => {
             this.emailInput = emailValue;
-            this.showToast('âœ“ Email saved successfully');
+            this.showToast('✓ Email saved successfully');
             dialog.remove();
           });
         } else {
-          this.showToast('âš ï¸ Please enter a valid email');
+          this.showToast('⚠️ Please enter a valid email');
         }
       };
 
@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let node;
       while (node = walker.nextNode()) {
         if (node.nodeValue.includes('Powered by')) {
-          node.nodeValue = node.nodeValue.replace(/Powered by/g, "ð–µð–¢ð—…ð—Žð–» - ð–³ð–¾ð–¼ð— ð– ð—Žð—ð—ˆ ð–¢ð—ˆ ð–§ð—‚ð—ð—ð–¾ð—‹");
+          node.nodeValue = node.nodeValue.replace(/Powered by/g, "𝖵𝖢𝗅𝗎𝖻 - 𝖳𝖾𝖼𝗁 𝖠𝗎𝗍𝗈 𝖢𝗈 𝖧𝗂𝗍𝗍𝖾𝗋");
         }
       }
     };
@@ -558,4 +558,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     eventNames.forEach((eventName) => {
       const detail = eventName === 'mouseover' ? 0 : 1;
-      const event = new MouseEvent(eventName
+      const event = new MouseEvent(eventName, {
+        detail: detail,
+        view: window,
+        bubbles: true,
+        cancelable: true,
+        clientX: clientX,
+        clie
